@@ -1,8 +1,8 @@
 <?php
-$hostname = SAE_MYSQL_HOST_M.':'.SAE_MYSQL_PORT;
-$dbuser = SAE_MYSQL_USER;
-$dbpass = SAE_MYSQL_PASS;
-$dbname = SAE_MYSQL_DB;
+$hostname = 'localhost:3306';
+$dbuser = 'root';
+$dbpass = 'root';
+$dbname = 'zhegedb';
 //connect to db
 $conn = mysql_connect($hostname, $dbuser, $dbpass)
     or die(mysql_error());

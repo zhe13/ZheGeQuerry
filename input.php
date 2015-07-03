@@ -1,3 +1,4 @@
+
 <?php
 //补时间存储数据用
 date_default_timezone_set("PRC");
@@ -5,9 +6,14 @@ require "connect.php";
 
 //general variable
 $port=array(8888,8788,8688,8588,8488,8887);
+
 $date=date("Y/m/d",strtotime("-1 day"));
+
+
 echo $date."<br/>";
 ini_set('memory_limit','-1');
+ini_set('max_execution_time','0');
+ini_set('max_input_time','0');
 set_time_limit(0);
 
 foreach ($port as $p){
@@ -25,11 +31,11 @@ foreach ($port as $p){
 		
         break;
         case 8588:
-        $f = "http://121.201.8.151:8788/gm/getActiveLog?path=/server4/".$date.".log";
+        $f = "http://121.201.8.151:8588/gm/getActiveLog?path=/server4/".$date.".log";
 	
         break;
         case 8488:
-        $f = "http://121.201.8.151:8788/gm/getActiveLog?path=/server5/".$date.".log";
+        $f = "http://121.201.8.151:8488/gm/getActiveLog?path=/server5/".$date.".log";
 		
         break;
         case 8887:
@@ -74,6 +80,8 @@ function readLog($file,$port){
     {
         $line = $data[$x];
         list($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l)= explode(' ',$line);
+    	$k=str_replace("'","",$k);
+	$g=str_replace("'","",$g);//fix name bug
         $insert = "insert into `".$date."-".$port."action`(time,name,action,string)values('$b','$k','$f','$g')";
         $insertR = mysql_query($insert) or die(mysql_error());
     
