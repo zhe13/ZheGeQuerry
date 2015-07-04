@@ -1,5 +1,9 @@
-
 <?php
+//data	:	2015-7-1
+//author:	zhe13
+//email	:	wutianzhe123@gmail.com
+//name 	:	input all server's data of yesterday into zhegedb
+//
 //补时间存储数据用
 date_default_timezone_set("PRC");
 require "connect.php";
