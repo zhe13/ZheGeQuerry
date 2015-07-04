@@ -15,7 +15,12 @@
         </form>
     </body>
 </html>
-<?php
+<?php 
+//data	:	2015-7-2
+//author:	zhe13
+//email	:	wutianzhe123@gmail.com
+//name 	:	a query interface for zhegedb
+//
 //查询数据库获得每日付费人数和关卡人数用
 header('content-type:text/html;charset = utf-8');
 date_default_timezone_set("PRC");
