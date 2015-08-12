@@ -9,7 +9,7 @@ date_default_timezone_set("PRC");
 require "connect.php";
 
 //general variable
-$port=array(8888,8788,8688,8588,8488,8388,8887);
+$port=array(8888,8788,8688,8588,8488,8887);
 
 $date=date("Y/m/d",strtotime("-1 day"));
 
@@ -42,19 +42,16 @@ foreach ($port as $p){
         $f = "http://121.201.8.151:8488/gm/getActiveLog?path=/server5/".$date.".log";
 		
         break;
-	case 8388:
-        $f = "http://121.201.8.151:8488/gm/getActiveLog?path=/server6/".$date.".log";
-
-        break;
         case 8887:
         $f = "http://123.57.69.133:8887/gm/getActiveLog?path=/server1/".$date.".log";
-		
+			
         break;
         default:
         echo "The server is not supported now!!!";
     }
+	echo "$f<br/>";
     //echo "<br/>$p";
-    readLog($f,$p);
+   // readLog($f,$p);
 }
 
     //$file = "http://121.201.8.151:8788/gm/getActiveLog?path=/server2/".$date.".log";

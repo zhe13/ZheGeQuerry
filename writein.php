@@ -59,10 +59,14 @@ set_time_limit(0);
 		
         break;
         case 8887:
-        $f = "http://121.201.8.151:8887/gm/getActiveLog?path=/server1/".$date.".log";
-		
+        $f = "http://123.57.69.133:8887/gm/getActiveLog?path=/server1/".$date.".log";
+	
         break;
-        default:
+	case 8388:
+	$f = "http://121.201.8.151:8388/gm/getActiveLog?path=/server6/".$date.".log";
+        
+	break;
+	default:
         echo "The server is not supported now!!!";
     }
     //echo "<br/>$p";
