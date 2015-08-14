@@ -61,7 +61,7 @@ set_time_limit(0);
         break;
         case 8488:
         //$f = "http://121.201.8.151:8488/gm/getActiveLog?path=/server5/".$date.".log";
-		$f = "./logs/8488/".$date."log";//在运维来之前暂时将文件存储到upload文件夹下
+		$f = "./logs/8488/".$date."log";//在运维来之前暂时将文件存储到本地
        
         break;
         case 8887:
