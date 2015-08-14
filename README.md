@@ -17,3 +17,5 @@ mysql settings:localhost:8283,root,root,
 >writein.php //if I forget use input someday,Ican use this one to save a special day's data 
 
 made by zhe13
+
+some problems:8488 cannot read files from the qingjiao server,so read log
