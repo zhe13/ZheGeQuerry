@@ -44,6 +44,8 @@ echo "number of player is $rowCount<br/>";
 getPayNum($rowCount);
 
 getTaskNum();
+//暂时先在这边贴出用户数量，今晚将留存率单独提出
+listPlayer("userList",$result);
 
 function getPayNum($totalNum){
     global $date,$port;
