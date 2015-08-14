@@ -17,6 +17,11 @@
 </html>
 
 <?php
+//data	:	2015-8-14
+//author:	zhe13
+//email	:	wutianzhe123@gmail.com
+//name 	:	insert data for zhegedb
+//
 //补时间存储数据用
 date_default_timezone_set("PRC");
 require "connect.php";
@@ -55,19 +60,20 @@ set_time_limit(0);
 	
         break;
         case 8488:
-        $f = "http://121.201.8.151:8488/gm/getActiveLog?path=/server5/".$date.".log";
-		
+        //$f = "http://121.201.8.151:8488/gm/getActiveLog?path=/server5/".$date.".log";
+		$f = "./logs/8488/".$date."log";//在运维来之前暂时将文件存储到本地,8.14
+       
         break;
         case 8887:
         $f = "http://123.57.69.133:8887/gm/getActiveLog?path=/server1/".$date.".log";
 	
         break;
-	case 8388:
-	$f = "http://121.201.8.151:8388/gm/getActiveLog?path=/server6/".$date.".log";
-        
-	break;
-	default:
-        echo "The server is not supported now!!!";
+    	case 8388:
+    	$f = "http://121.201.8.151:8388/gm/getActiveLog?path=/server6/".$date.".log";
+            
+    	break;
+    	default:
+            echo "The server is not supported now!!!";
     }
     //echo "<br/>$p";
     readLog($f,$p);
