@@ -15,6 +15,7 @@
 			<h3>write down the time start&end</h3>
 			startTime:<input type=text name="tSta">
 			endTime  :<input type=text name="tEnd">
+            <br/>
         	<input type=submit value="Query" />
         </form>
     </body>
@@ -31,7 +32,12 @@ date_default_timezone_set("PRC");
 require "connect.php";
 
 $tSta=$_POST['tSta'];
-$tEnd=$_POST['tEnd'];
+if($_POST['tEnd']){
+    $tEnd=$_POST['tEnd'];
+}else{
+    $tEnd=$tSta;
+}
+
 $port=$_POST['port'];
 //start query
 if($_POST['date']){
@@ -40,7 +46,7 @@ if($_POST['date']){
     $date=date("Y/m/d",strtotime("-1 day"));
 }
 echo("<br/>port:$port<br/>date:$date<br/>");
-$sql = "SELECT DISTINCT name FROM `".$date."-".$port."action` BETWEEN ".$tSta."AND".$tEnd." ORDER BY convert(name using gbk)";
+$sql = "SELECT DISTINCT name FROM `".$date."-".$port."action` WHERE time LIKE`".$tSta."` OR time LIKE`".$tEnd."`";
 $result = mysql_query($sql);
 //get num
 $rowCount = mysql_num_rows($result);
