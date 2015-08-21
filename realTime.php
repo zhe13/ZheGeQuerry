@@ -46,7 +46,7 @@ if($_POST['date']){
     $date=date("Y/m/d",strtotime("-1 day"));
 }
 echo("<br/>port:$port<br/>date:$date<br/>");
-$sql = "SELECT DISTINCT name FROM `".$date."-".$port."action` WHERE time LIKE `".$tSta."%` OR time LIKE`".$tEnd."%`";
+$sql = "SELECT DISTINCT name FROM `".$date."-".$port."action` WHERE time LIKE '$tSta%' OR time LIKE '$tEnd';
 $result = mysql_query($sql);
 //get num
 $rowCount = mysql_num_rows($result);
