@@ -1,52 +1,90 @@
-<?php
-//存储数据用
+<!DOCTYPE html>
+<html lang='zh-cn'>
+    <head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></meta>
+        <title>ZheGeQuery</title>
+    </head>
+    
+    <body>
+        <h2>Type in the sever's port you want to query...@example 8888,87888...</h2>
+		<form  method="post" action="">
+            port:<input type=text name="port"/>
+        	<h3>choose the date...@example 1994/03/13</h3>
+            date:<input type=text name="date"/>
+        	<br/>
+			<h3>write down the time start&end</h3>
+			startTime:<input type=text name="tSta">
+			endTime  :<input type=text name="tEnd">
+        	<input type=submit value="Query" />
+        </form>
+    </body>
+</html>
+<?php 
+//data	:	2015-8-20
+//author:	zhe13
+//email	:	wutianzhe123@gmail.com
+//name 	:	a query for realtime online number
+//
+//查询数据库获得每日付费人数和关卡人数用
+header('content-type:text/html;charset = utf-8');
 date_default_timezone_set("PRC");
 require "connect.php";
 
-//read files
-$date=date("Y/m/d",strtotime("-1 day"));
-echo $date."<br/>";
-$file = "http://123.57.69.133:8887/gm/getActiveLog?path=/server1/".$date.".log";
-ini_set('memory_limit','-1');
-
-$data = file($file);
-
-
-//create everyday's table
-$sql = "CREATE TABLE IF NOT EXISTS `".$date."action` (\n"
-    . " `id` int(8) unsigned NOT NULL auto_increment,\n"
-    . " `time` varchar(20) NOT NULL,\n"
-    . " `name` varchar(20) NOT NULL,\n"
-    . " `action` varchar(20) NOT NULL, \n"
-    . " `string` text COLLATE utf8_unicode_ci NOT NULL,\n"
-    . " PRIMARY KEY (`id`)\n"
-    . ") ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;";
-$result = mysql_query($sql) or die(mysql_error());
-
-
-echo("is writing...");
-//insert data
-$num = count($data)-1;
-for($x = 0;$x<$num;$x++)
-{
-    $line = $data[$x];
-	list($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l)= explode(' ',$line);
-    $insert = "insert into `".$date."action`(time,name,action,string)values('$b','$k','$f','$g')";
-	$insertR = mysql_query($insert) or die(mysql_error());
-
+$tSta=$_POST['tSta'];
+$tEnd=$_POST['tEnd'];
+$port=$_POST['port'];
+//start query
+if($_POST['date']){
+    $date=$_POST['date'];
+}else{
+    $date=date("Y/m/d",strtotime("-1 day"));
 }
-echo("...done!</br>");
+echo("<br/>port:$port<br/>date:$date<br/>");
+$sql = "SELECT DISTINCT name FROM `".$date."-".$port."action` BETWEEN ".$tSta."AND".$tEnd." ORDER BY convert(name using gbk)";
+$result = mysql_query($sql);
+//get num
+$rowCount = mysql_num_rows($result);
+echo "from $tSta to $tEnd,the number of player is $rowCount<br/>";
 
+listPlayer("RealTimePlayerNum",$result);
+getTaskNum();
 
-//separate the strings&echo
-$line = $data[count($data)-1];
+   
 
+function listPlayer($tableName,$result){
+    //list players
+    echo "<table border='1'>
+    <tr>
+    <th>$tableName</th>
+    </tr>";
 
-$text=iconv("UTF-8","GBK",$line);//convert to GBK
-list($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l)= explode(' ',$text);
-echo "Time: $a,$b;Name: $k;Action: $f;String: $g<br/>";
-echo "total number is $num<br/>";
+    while($row = mysql_fetch_array($result))
+      {
+      echo "<tr>";
+      echo "<td>" . $row['name'] . "</td>";
+      echo "</tr>";
 
-     //closeDB
+      }
+    echo "</table>";
+}
+//查询各个task的留存人数
+function getTaskNum(){
+    global $date,$port;
+    $taskId = file("taskId.log");
+    for($x=0;$x<count($taskId);$x++){
+        $task = rtrim($taskId[$x]);
+        
+      	$sql = "SELECT DISTINCT name FROM `".$date."-".$port."action` WHERE string LIKE '%".$task."%'";
+        $result = mysql_query($sql) or die(mysql_error());
+       
+        $playerNum = mysql_num_rows($result);
+        echo("$task:$playerNum<br/>");
+    }
+    //echo count($row);//check sum
 
+    
+}
+
+    
+mysql_close($conn);
 ?>

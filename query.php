@@ -44,6 +44,7 @@ echo "number of player is $rowCount<br/>";
 getPayNum($rowCount);
 
 getTaskNum();
+listPlayer("AllPlayer",$result);
 
 function getPayNum($totalNum){
     global $date,$port;
