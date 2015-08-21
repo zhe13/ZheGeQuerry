@@ -46,14 +46,14 @@ if($_POST['date']){
     $date=date("Y/m/d",strtotime("-1 day"));
 }
 echo("<br/>port:$port<br/>date:$date<br/>");
-$sql = "SELECT DISTINCT name FROM `".$date."-".$port."action` WHERE time LIKE`".$tSta."` OR time LIKE`".$tEnd."`";
+$sql = "SELECT DISTINCT name FROM `".$date."-".$port."action` WHERE time LIKE `".$tSta."%` OR time LIKE`".$tEnd."%`";
 $result = mysql_query($sql);
 //get num
 $rowCount = mysql_num_rows($result);
-echo "from $tSta to $tEnd,the number of player is $rowCount<br/>";
+echo "from $tSta to $tEnd,the number of player is $rowCount<br/><br/><br/>";
 
 listPlayer("RealTimePlayerNum",$result);
-getTaskNum();
+
 
    
 
@@ -73,24 +73,7 @@ function listPlayer($tableName,$result){
       }
     echo "</table>";
 }
-//查询各个task的留存人数
-function getTaskNum(){
-    global $date,$port;
-    $taskId = file("taskId.log");
-    for($x=0;$x<count($taskId);$x++){
-        $task = rtrim($taskId[$x]);
-        
-      	$sql = "SELECT DISTINCT name FROM `".$date."-".$port."action` WHERE string LIKE '%".$task."%'";
-        $result = mysql_query($sql) or die(mysql_error());
-       
-        $playerNum = mysql_num_rows($result);
-        echo("$task:$playerNum<br/>");
-    }
-    //echo count($row);//check sum
 
-    
-}
-
-    
+ 
 mysql_close($conn);
 ?>
