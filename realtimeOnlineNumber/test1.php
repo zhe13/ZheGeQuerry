@@ -56,7 +56,7 @@ function insertNewData($data,$tableName)
         list($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l)= explode(' ',$line);
     	$k=str_replace("'","",$k);
 	$g=str_replace("'","",$g);//fix name bug
-        $insert = "insert into `".$date."-".$port."action`(time,name)values('$b','$k')";
+        $insert = "insert into `".$tableName."`(time,name)values('$b','$k')";
         $insertR = mysql_query($insert) or die(mysql_error());  
     }   
 }
