@@ -46,11 +46,11 @@ function readLog($file,$port){
 function insertNewData($data,$tableName)
 {
     //query old data
-    $sql = "SELECT COUNT(*) FROM `".$tableName."`";
+    $sql = "SELECT DISTINCT name FROM `".$tableName."`";
     $oldNum = mysql_query($sql) or die(mysql_error());
     $num = count($data)-1;
     
-    for($x = $oldNum;$x<$num;$x++)
+    for($x = mysql_num_rows($oldNum);$x<$num;$x++)
     {
         $line = $data[$x];
         list($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l)= explode(' ',$line);
@@ -65,9 +65,9 @@ function realtime($tableName)
 {
     $hour = date('h');
     $sql  = "SELECT DISTINCT name from`".$tableName."` WHERE time LIKE '".$hour."%'";
-    $num  = mysql_num_rows(mysql_query($sql)); 
+    $num  = mysql_query($sql) or die(mysql_error()); 
     $totalData = array(
-        'n' => $num,
+        'n' => mysql_num_rows($num),
         'table' => $tableName
     );
     echo $_GET['jsonp'].'('.json_encode($totalData).')';

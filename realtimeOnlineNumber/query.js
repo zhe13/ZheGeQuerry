@@ -6,7 +6,7 @@
 
 $(document).ready(function(){
 	update();
-	setInterval(update,5000);
+	setInterval(update,60000);
 	
 })
 //使用ajax和php通讯
