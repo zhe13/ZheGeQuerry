@@ -1,9 +1,9 @@
 <?php
-//data	:	2015-08-23
+//data	:	2015-08-28
 //author:	zhe13
 //email	:	wutianzhe123@gmail.com
-//name 	:	realTimeQueryTest
-//
+//name 	:	realTimeQuery
+//最主要考虑多线程并发，一个php对于多个服务器的访问
 
 date_default_timezone_set("PRC");
 $hostname = 'localhost:3306';

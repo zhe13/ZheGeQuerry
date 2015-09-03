@@ -2,7 +2,7 @@
 //author:	zhe13
 //email	:	wutianzhe123@gmail.com
 //name 	:	QueryRealtimeOnline
-//
+//fix   :   2015-08-28#将查询和插入分成两个ajax过程
 
 $(document).ready(function(){
 	update();
