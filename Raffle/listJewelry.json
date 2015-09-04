@@ -21,17 +21,17 @@
 	{"item":"万能熔炼剂x3","price":"180","weight":"8"},
 	{"item":"锻制玄铁x20","price":"200","weight":"8"},
 	{"item":"高级熔炼剂x5","price":"250","weight":"7"},
-	{"item":"武器晶玉x20","price":"260","weight":"7"},
+	{"item":"武器晶玉x20","price":"260","weight":"7","fix":"8"},
 	{"item":"次级熔炼剂x9","price":"270","weight":"3"},
 	{"item":"万能熔炼剂x5","price":"300","weight":"3"},
 	{"item":"中级熔炼剂x9","price":"360","weight":"3"},
-	{"item":"初级熔炼剂x20","price":"400","weight":"3"},
+	{"item":"初级熔炼剂x20","price":"400","weight":"3","fix":"13"},
 	{"item":"高级熔炼剂x9","price":"450","weight":"2"},
-	{"item":"锻制玄铁x50","price":"500","weight":"2"},
+	{"item":"锻制玄铁x50","price":"500","weight":"2","fix":"66"},
 	{"item":"万能熔炼剂x9","price":"540","weight":"2"},
-	{"item":"次级熔炼剂x20","price":"600","weight":"1"},
-	{"item":"中级熔炼剂x20","price":"800","weight":"1"},
-	{"item":"高级熔炼剂x20","price":"1000","weight":"0.1"},
-	{"item":"万能熔炼剂x20","price":"1200","weight":"0.01"}
+	{"item":"次级熔炼剂x20","price":"600","weight":"1","fix":"21"},
+	{"item":"中级熔炼剂x20","price":"800","weight":"1","fix":"34"},
+	{"item":"高级熔炼剂x20","price":"1000","weight":"0.1","fix":"55"},
+	{"item":"万能熔炼剂x20","price":"1200","weight":"0.01","fix":"89"}
 	]
 }
